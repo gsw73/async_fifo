@@ -112,8 +112,12 @@ endmodule : tb
 // ========================================================================
 
 program automatic main_prg
+    import asfifo_pkg::*;
     #(parameter DW=12)
     (afifo_if.TB_WR sigw_h, afifo_if.TB_RD sigr_h);
+
+    timeunit 1ns;
+    timeprecision 100ps;
 
     MyEnv#(.DW(DW)) env;
 
@@ -140,4 +144,6 @@ program automatic main_prg
             repeat (2000) @(sigw_h.cb_wr);
         end
 
-endprogram  
+
+
+endprogram : main_prg
